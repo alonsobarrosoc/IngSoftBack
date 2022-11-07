@@ -1,0 +1,43 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Asesoria {
+  idAsesoria   Int      @id @default(autoincrement()) @db.MediumInt
+  idProfesor   String?  @db.VarChar(50)
+  description  String?  @db.VarChar(500)
+  name         String?  @db.VarChar(30)
+  availability String?  @db.LongText
+  price        Float?
+  duration     Int?
+  Usuario      Usuario? @relation(fields: [idProfesor], references: [email], onDelete: Restrict, onUpdate: Restrict, map: "Asesoria_ibfk_1")
+  Cita         Cita[]
+
+  @@index([idProfesor], map: "idProfesor")
+}
+
+model Cita {
+  idCita     Int       @id @default(autoincrement()) @db.MediumInt
+  idAlumno   String?   @db.VarChar(50)
+  idAsesoria Int?      @db.MediumInt
+  startDate  DateTime? @db.DateTime(0)
+  Usuario    Usuario?  @relation(fields: [idAlumno], references: [email], onDelete: Restrict, onUpdate: Restrict, map: "Cita_ibfk_1")
+  Asesoria   Asesoria? @relation(fields: [idAsesoria], references: [idAsesoria], onDelete: Restrict, onUpdate: Restrict, map: "Cita_ibfk_2")
+
+  @@index([idAlumno], map: "idAlumno")
+  @@index([idAsesoria], map: "idAsesoria")
+}
+
+model Usuario {
+  email    String     @id @db.VarChar(50)
+  name     String?    @db.VarChar(50)
+  photo    Bytes?     @db.MediumBlob
+  Asesoria Asesoria[]
+  Cita     Cita[]
+}
