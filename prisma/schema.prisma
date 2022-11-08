@@ -36,8 +36,10 @@ model Cita {
 
 model Usuario {
   email    String     @id @db.VarChar(50)
+  password String
   name     String?    @db.VarChar(50)
   photo    Bytes?     @db.MediumBlob
+  role     Int        @default(1)
   Asesoria Asesoria[]
   Cita     Cita[]
 }
