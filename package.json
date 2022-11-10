@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js",
-    "heroku": "git add . && git commit -m deploy-in-heroku && git push heroku master"
+    "heroku-push": "git add . && git commit -m deploy-in-heroku && git push heroku master && git push",
+    "heroku-tail": "heroku logs --tail"
   },
   "license": "MIT",
   "dependencies": {
