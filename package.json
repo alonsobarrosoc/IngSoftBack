@@ -1,23 +1,25 @@
-
 {
   "name": "gobaz-admins",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "heroku": "git add . && git commit -m deploy-in-heroku && git push heroku master"
   },
   "license": "MIT",
   "dependencies": {
-    "@prisma/client": "^4.3.1",
+    "@prisma/client": "^4.6.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
+    "formidable": "^2.0.1",
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.19",
-    "prisma": "^4.3.1"
+    "prisma": "^4.6.0"
   }
 }
