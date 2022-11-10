@@ -33,6 +33,7 @@ app.get('/api/test', (req, res) => {
 
 
 app.use('/api/user', require('./Routes/user'))
+app.use('/api/asesoria', require('./Routes/asesorias'))
 
 const port = process.env.PORT
 
