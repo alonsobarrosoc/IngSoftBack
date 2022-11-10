@@ -45,6 +45,7 @@ exports.deleteAsesoria = async (res, res) => {
         json = { msg: "Deleted correctly" };
       }
     });
+    res.status(code).json(json)
 };
 
 exports.putAsesoria = async (req, res) => {
