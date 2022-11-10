@@ -27,6 +27,10 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.get('/api/test', (req, res) => {
+  res.status(200).json({msg: "This is a testing endpoint"})
+})
+
 
 app.use('/api/user', require('./Routes/user'))
 
