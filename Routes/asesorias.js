@@ -4,4 +4,4 @@ const router = express.Router()
 
 router.post('/get', getAsesoria)
 
-exports.module = router
+module.exports = router
