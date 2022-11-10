@@ -29,7 +29,7 @@ exports.getAsesoria = async (req, res) => {
   res.status(code).json(json);
 };
 
-exports.deleteAsesoria = async (res, res) => {
+exports.deleteAsesoria = async (req, res) => {
   const idAsesoria = req.query.idAsesoria;
   let code = 500;
   let json = { error: "Error deleting" };
