@@ -4,7 +4,15 @@ const empty = [undefined, "", [], {}];
 
 exports.newAsesoria = async (req, res) => {
   let body = req.body;
-  await prisma.asesoria.create(body);
+  let code = 500
+  let json = {error: "Asesoria not created"}
+  await prisma.asesoria.create(body).then((resp, err) => {
+    if(!err){
+      code = 200
+      json = "created"
+    }
+  })
+  res.status(code).json(json)
 };
 
 exports.getAsesoria = async (req, res) => {
