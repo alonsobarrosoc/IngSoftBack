@@ -7,7 +7,7 @@ const formidable = require("formidable");
 const fs = require("fs");
 const key = process.env.KEY;
 
-exports.newUser = async (req, res, next) => {
+exports.newUser = async (req, res) => {
   try {
     let pass = "";
     let form = new formidable.IncomingForm();
