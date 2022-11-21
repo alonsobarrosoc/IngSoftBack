@@ -79,6 +79,8 @@ exports.findWithoutPhoto = async (req, res) => {
     })
     .catch((err) => {
       res.status(500).json(err);
+    }).finally(() => {
+      await prisma.$disconnect()
     });
   res.status(200).json(users);
 };
@@ -91,6 +93,8 @@ exports.findPhoto = async (req, res) => {
     select: {
       photo: true,
     },
+  }).finally(() => {
+    await.prisma.$disconnect()
   });
   res.writeHead(200, {
     "Content-Type": "image/png",

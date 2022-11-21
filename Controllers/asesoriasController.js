@@ -5,12 +5,14 @@ const empty = [undefined, "", [], {}];
 exports.newAsesoria = async (req, res) => {
   let body = req.body;
   let code = 500
-  let json = {error: "Asesoria not created"}
+  let json = { error: "Asesoria not created" }
   await prisma.asesoria.create(body).then((resp, err) => {
-    if(!err){
+    if (!err) {
       code = 200
       json = "created"
     }
+  }).finally(() => {
+    await prisma.$disconnect()
   })
   res.status(code).json(json)
 };
@@ -32,6 +34,8 @@ exports.getAsesoria = async (req, res) => {
         code = 200;
         json = resp;
       }
+    }).finally(() => {
+      await prisma.$disconnect()
     });
   }
   res.status(code).json(json);
@@ -52,8 +56,11 @@ exports.deleteAsesoria = async (req, res) => {
         code = 500;
         json = { msg: "Deleted correctly" };
       }
+    })
+    .finally(() => {
+      await prisma.$disconnect()
     });
-    res.status(code).json(json)
+  res.status(code).json(json)
 };
 
 exports.putAsesoria = async (req, res) => {
@@ -73,6 +80,9 @@ exports.putAsesoria = async (req, res) => {
         code = 200;
         json = { msg: "Updated correctly" };
       }
+    })
+    .finally(() => {
+      await prisma.$disconnect()
     });
   res.status(200).json(json);
 };
