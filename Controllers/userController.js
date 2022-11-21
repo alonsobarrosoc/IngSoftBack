@@ -1,11 +1,12 @@
 // const { PrismaClient } = require("@prisma/client");
 // const prisma = new PrismaClient();
-const prisma = require('../prisma')
+// const prisma = require('../prisma')
 const bcrypt = require("bcrypt");
 const saltRounds = Number(process.env.SALTROUNDS);
 const jwt = require("jsonwebtoken");
 const formidable = require("formidable");
 const fs = require("fs");
+const { prisma } = require("@prisma/client");
 const key = process.env.KEY;
 
 exports.newUser = async (req, res) => {
