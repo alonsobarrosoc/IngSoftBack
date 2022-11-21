@@ -6,7 +6,6 @@ const saltRounds = Number(process.env.SALTROUNDS);
 const jwt = require("jsonwebtoken");
 const formidable = require("formidable");
 const fs = require("fs");
-const { prisma } = require("@prisma/client");
 const key = process.env.KEY;
 
 exports.newUser = async (req, res) => {
