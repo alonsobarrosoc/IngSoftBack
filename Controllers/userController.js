@@ -1,5 +1,5 @@
-// const { PrismaClient } = require("@prisma/client");
-// const prisma = new PrismaClient();
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 // const prisma = require('../prisma')
 const bcrypt = require("bcrypt");
 const saltRounds = Number(process.env.SALTROUNDS);
@@ -13,7 +13,7 @@ exports.newUser = async (req, res) => {
   try {
     let pass = "";
     let form = new formidable.IncomingForm();
-    form.keepExtensions = true;
+
     form.parse(req, async (er, fields, files) => {
       const usr = await prisma.usuario.findUnique({
         where: {
@@ -49,6 +49,8 @@ exports.newUser = async (req, res) => {
             })
             .then((resp) => {
               res.json("created");
+            }).finally(() => {
+              prisma.$disconnect()
             });
           // res.json("created");
 
