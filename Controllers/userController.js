@@ -23,7 +23,7 @@ exports.newUser = async (req, res) => {
         },
       });
       if (usr == null) {
-        bcrypt.hash(fields.password, saltRounds, function (errorHash, hash) {
+        bcrypt.hash(fields.password, saltRounds, function(errorHash, hash) {
           pass = hash;
           let path = files.photo.filepath;
           let strFoto = "";
@@ -80,7 +80,7 @@ exports.findWithoutPhoto = async (req, res) => {
     .catch((err) => {
       res.status(500).json(err);
     }).finally(() => {
-      await prisma.$disconnect()
+      prisma.$disconnect()
     });
   res.status(200).json(users);
 };
@@ -94,7 +94,7 @@ exports.findPhoto = async (req, res) => {
       photo: true,
     },
   }).finally(() => {
-    await.prisma.$disconnect()
+    prisma.$disconnect()
   });
   res.writeHead(200, {
     "Content-Type": "image/png",
@@ -116,7 +116,7 @@ exports.login = async (req, res) => {
     },
   });
   if (usr != null) {
-    bcrypt.compare(body.password, usr.password).then(function (result) {
+    bcrypt.compare(body.password, usr.password).then(function(result) {
       if (result) {
         var token = jwt.sign(usr, key);
         res.status(200).json({ token });

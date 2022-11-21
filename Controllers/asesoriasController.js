@@ -12,7 +12,7 @@ exports.newAsesoria = async (req, res) => {
       json = "created"
     }
   }).finally(() => {
-    await prisma.$disconnect()
+    prisma.$disconnect()
   })
   res.status(code).json(json)
 };
@@ -35,7 +35,7 @@ exports.getAsesoria = async (req, res) => {
         json = resp;
       }
     }).finally(() => {
-      await prisma.$disconnect()
+      prisma.$disconnect()
     });
   }
   res.status(code).json(json);
@@ -58,7 +58,7 @@ exports.deleteAsesoria = async (req, res) => {
       }
     })
     .finally(() => {
-      await prisma.$disconnect()
+      prisma.$disconnect()
     });
   res.status(code).json(json)
 };
@@ -82,7 +82,7 @@ exports.putAsesoria = async (req, res) => {
       }
     })
     .finally(() => {
-      await prisma.$disconnect()
+      prisma.$disconnect()
     });
   res.status(200).json(json);
 };
