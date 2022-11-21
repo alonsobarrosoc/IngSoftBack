@@ -4,7 +4,6 @@ const cors = require('cors');
 const bodyParser = require('body-parser')
 
 
-
 // middlewares
 const app = express()
 app.use(
@@ -21,7 +20,6 @@ app.use(function(req, res, next) {
   let link = req.get("Referrer");
   if (link !== undefined) {
     link = link.substring(0, link.length - 1);
-    console.log(link);
     res.header("Access-Control-Allow-Origin", link);
   }
   next();
