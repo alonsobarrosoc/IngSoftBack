@@ -21,6 +21,7 @@ exports.getAsesoria = async (req, res) => {
   const body = req.body;
   let code = 500;
   let json = { error: "Error getting" };
+
   if (empty.includes(body)) {
     await prisma.asesoria.findMany().then((resp, err) => {
       if (!err) {
@@ -38,7 +39,8 @@ exports.getAsesoria = async (req, res) => {
       prisma.$disconnect()
     });
   }
-  res.status(code).json(json);
+  res.status(code).json(json)
+
 };
 
 exports.deleteAsesoria = async (req, res) => {
